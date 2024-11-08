@@ -19,7 +19,7 @@ export default function SignUp() {
           <Input type="email" required />
           Password
           <Input type="password" required />
-          Comfirm Password
+          Confirm Password
           <Input type="password" required />
           <Button type="submit">Sign Up</Button>
         </form>
