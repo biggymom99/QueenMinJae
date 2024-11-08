@@ -1,0 +1,19 @@
+/* MovieList의 컨테이너 */
+.movie-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5개의 열 */
+    gap: 20px; /* 카드들 사이의 간격 */
+    padding: 20px;
+    justify-items: center; /* 카드들을 가운데 정렬 */
+}
+
+/* MovieCard 스타일 */
+.movie-card {
+    width: 100%; /* 카드의 너비 */
+    max-width: 200px; /* 최대 너비 제한 */
+    height: 100%; /* 고정 높이 */
+    background-color: #f9f9f9; /* 배경 색 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 살짝 그림자 */
+    overflow: hidden;
+}

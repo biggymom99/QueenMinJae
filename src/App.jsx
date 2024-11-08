@@ -1,33 +1,18 @@
-import React from 'react';
-import movieListData from './assets/movieListData.json';
+import React, { useEffect, useState } from 'react';
 import MovieCard from '../components/MovieCard';
-import styled from "styled-components";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Detail from './pages/detail.jsx'
-
-// MovieCard들을 담을 Flex 컨테이너
-const MovieFlexContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;               // 자동으로 줄바꿈
-  gap: 10px;
-  justify-content: space-between; // 여백 균일하게 분배
-  padding: 20px;
-`;
+import MovieList from '../components/MovieList.jsx';
 
 
-const MovieList = () => {
-  const movies = movieListData.results.slice(0, 20);  // 처음 20개의 영화만 가져오기
+//useEffect로 처음 렌더링 시 API 호출 실행
+//상태에 저장해서 컴포넌트가 그 데이터를 기반으로 렌더링 되게
+//API 응답데이터에서 20개 씩 추출
 
-  return (
-    <MovieFlexContainer>
-      {movies.map((movie, index) => (
-        <MovieCard key={movie.id || index} movie={movie} />
-      ))}
-    </MovieFlexContainer>
-  );
-};
 
 const App = () =>{
+
+
   return(
     <BrowserRouter>
       <Routes>

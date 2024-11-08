@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import movieDetailData from '../assets/movieDetailData.json';
 import styled from "styled-components";
 
 // 전체 레이아웃 컨테이너
@@ -40,10 +40,33 @@ const Overview = styled.p`
 `;
 
 export default function Detail(){
-    const { movieId } = useParams()
+    const { movieId } = useParams();
+    const [movieDetailData, setMovieDetailData] = useState(null);
+    const url = `${import.meta.env.VITE_API_URL}/movie/${movieId}?api_key=${import.meta.env.VITE_API_KEY}`;
 
-    const imgUrl = `https://image.tmdb.org/t/p/w500/${movieDetailData.poster_path}`
-    console.log(movieId)
+  //console.log(movieId)
+    useEffect(()=>{
+      const fetchMovieDetail = async()=>{
+        try{
+          const response = await fetch(url);
+          const data = await response.json();
+          setMovieDetailData(data);
+
+        } catch(error){
+          console.error('Fetching Error : ', error);
+        }
+      };
+      fetchMovieDetail();
+    },[movieId]);
+
+    console.log(movieDetailData);
+   
+    const imgUrl = `https://image.tmdb.org/t/p/w500/${movieDetailData.poster_path}`;
+
+    if (movieDetailData) {
+      return <div>L O A D I N G . . .</div>;
+      }
+
     return (
         <Container>
             <Poster className="w-[50%]" src = {imgUrl}/>
