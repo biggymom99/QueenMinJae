@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Movie.css'
-import './MovieCardStyle.js'
-import { Card, Poster, Title, VoteAverage } from './MovieCardStyle.js';
+import '../style/Movie.css'
+import '../style/MovieCardStyle.js'
+import { Card, Poster, Title, VoteAverage } from '../style/MovieCardStyle.js';
 
 
 

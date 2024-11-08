@@ -3,6 +3,9 @@ import MovieCard from './components/MovieCard.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Detail from './pages/detail.jsx'
 import MovieList from './components/MovieList.jsx';
+import NavBar from './components/NavBar.jsx';
+import SignUp from './pages/Signup.jsx';
+import LogIn from './pages/LogIn.jsx'
 
 
 //useEffect로 처음 렌더링 시 API 호출 실행
@@ -15,9 +18,12 @@ const App = () =>{
 
   return(
     <BrowserRouter>
+      <NavBar/>
       <Routes>
         <Route path="/" element={<MovieList/>}/>
         <Route path="/detail/:movieId" element={<Detail/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/login" element={<LogIn/>}/>
       </Routes>
     </BrowserRouter>
   )
