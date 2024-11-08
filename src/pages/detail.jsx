@@ -39,62 +39,58 @@ const Overview = styled.p`
   color: #666;
 `;
 
-export default function Detail(){
+export default function Detail() {
+  const { movieId } = useParams();
+  const [movieDetailData, setMovieDetailData] = useState(null);
 
-    const api_key= import.meta.env.VITE_API_KEY;
-    const { movieId } = useParams();
-    
-    const [movieDetailData, setMovieDetailData] = useState();
-
-    useEffect(()=>{
-      const fetchMovieDetail = async()=>{
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`,
+  useEffect(() => {
+    const fetchMovieDetail = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`,
           {
             method: 'GET',
             headers: {
               accept: 'application/json',
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ODEyNzk5YWVlY2RlYWM1NzNiNzUyZWU1YTUyMTAwZSIsIm5iZiI6MTczMDk5NTM1My44Mjc2MjE3LCJzdWIiOiI2NzJjOGQyOTkxNGJhZTk0YTFiYmE1OGQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Qf0XFH61xlhHzjowGwZUW8xuhXHqokKXgkXALImo0UA'
-            }
+              Authorization:
+                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMTZhMGQyNTg4ZmQ2OGJjY2M0Njg4NTY2Y2RjNzhmZiIsIm5iZiI6MTczMTA0ODY3NS42Mzc0MTQyLCJzdWIiOiI2NTI2NjBmNTBjYjMzNTE2ZjVjNzRjMGIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.wc1p1BrQjsaXfNZ3h0NJuG89Z63Qni6kor0mGrfvkp8',
+            },
           }
-        )
+        );
         const data = await response.json();
-        console.log('data:',data)
         setMovieDetailData(data);
-        
-      } 
-      fetchMovieDetail();
-    },[]);
-    console.log(movieDetailData)
-    
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-    const imgUrl = `https://image.tmdb.org/t/p/w500/${movieDetailData.poster_path}`;
+    fetchMovieDetail();
+  }, [movieId]);
 
-    if (!movieDetailData || !movieDetailData.poster_path) {
-      return <p>Loading...</p>;
-    }
+  if (!movieDetailData) {
+    return <div>L o a d i n g . . .</div>;
+  }
 
-    return (
-        <Container>
-            <Poster className="w-[50%]" src = {`${imgUrl}`}/>
+  const imgUrl = `https://image.tmdb.org/t/p/w500/${movieDetailData.poster_path}`;
 
-            <InfoSection>
-                <TitleAndRating>
-                    <h1>{movieDetailData.title}</h1>
-                    <h2>{movieDetailData.vote_average}</h2>
-                </TitleAndRating>
-                <Genre>
-                    {/** movieDetailData.genres가 배열인데 그 안에 객체 자체를 렌더링할 수 없어서
-                    각 객체의 name속성만 렌더링해야함. 
-                    그래서 genres 배열에서, map 메서드로 각 장르의 name속성만 추출
-                    join을 사용해 장르 이름을 쉼표로 구분된 문자열로 표시 가능*/}
-                    <h2>{movieDetailData.genres.map(genre => genre.name).join(', ')}</h2>
-                </Genre>
-                <Overview>
-                    <p>{movieDetailData.overview}</p>
-                </Overview>
-            </InfoSection>
+  return (
+    <Container>
+      <Poster className="w-[50%]" src={imgUrl} />
 
-        </Container>
-
-    )
+      <InfoSection>
+        <TitleAndRating>
+          <h1>{movieDetailData.title}</h1>
+          <h2>{movieDetailData.vote_average}</h2>
+        </TitleAndRating>
+        <Genre>
+          <h2>
+            {movieDetailData.genres.map((genre) => genre.name).join(', ')}
+          </h2>
+        </Genre>
+        <Overview>
+          <p>{movieDetailData.overview}</p>
+        </Overview>
+      </InfoSection>
+    </Container>
+  );
 }
