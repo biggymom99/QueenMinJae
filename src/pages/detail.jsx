@@ -40,36 +40,42 @@ const Overview = styled.p`
 `;
 
 export default function Detail(){
-    const { movieId } = useParams();
-    const [movieDetailData, setMovieDetailData] = useState(null);
-    const url = `${import.meta.env.VITE_API_URL}/movie/${movieId}?api_key=${import.meta.env.VITE_API_KEY}`;
 
-  //console.log(movieId)
+    const api_key= import.meta.env.VITE_API_KEY;
+    const { movieId } = useParams();
+    
+    const [movieDetailData, setMovieDetailData] = useState();
+
     useEffect(()=>{
       const fetchMovieDetail = async()=>{
-        try{
-          const response = await fetch(url);
-          const data = await response.json();
-          setMovieDetailData(data);
-
-        } catch(error){
-          console.error('Fetching Error : ', error);
-        }
-      };
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`,
+          {
+            method: 'GET',
+            headers: {
+              accept: 'application/json',
+              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ODEyNzk5YWVlY2RlYWM1NzNiNzUyZWU1YTUyMTAwZSIsIm5iZiI6MTczMDk5NTM1My44Mjc2MjE3LCJzdWIiOiI2NzJjOGQyOTkxNGJhZTk0YTFiYmE1OGQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Qf0XFH61xlhHzjowGwZUW8xuhXHqokKXgkXALImo0UA'
+            }
+          }
+        )
+        const data = await response.json();
+        console.log('data:',data)
+        setMovieDetailData(data);
+        
+      } 
       fetchMovieDetail();
-    },[movieId]);
+    },[]);
+    console.log(movieDetailData)
+    
 
-    console.log(movieDetailData);
-   
     const imgUrl = `https://image.tmdb.org/t/p/w500/${movieDetailData.poster_path}`;
 
-    if (movieDetailData) {
-      return <div>L O A D I N G . . .</div>;
-      }
+    if (!movieDetailData || !movieDetailData.poster_path) {
+      return <p>Loading...</p>;
+    }
 
     return (
         <Container>
-            <Poster className="w-[50%]" src = {imgUrl}/>
+            <Poster className="w-[50%]" src = {`${imgUrl}`}/>
 
             <InfoSection>
                 <TitleAndRating>

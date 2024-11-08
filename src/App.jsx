@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import MovieCard from '../components/MovieCard';
+import MovieCard from './components/MovieCard.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Detail from './pages/detail.jsx'
-import MovieList from '../components/MovieList.jsx';
+import MovieList from './components/MovieList.jsx';
 
 
 //useEffect로 처음 렌더링 시 API 호출 실행
