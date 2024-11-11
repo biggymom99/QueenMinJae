@@ -17,3 +17,24 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 살짝 그림자 */
     overflow: hidden;
 }
+
+.movie-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+@media screen and (max-width: 768px) {
+.movie-grid {
+    gap: 15px;
+}
+}
+
+/* 모바일 화면용 */
+@media screen and (max-width: 480px) {
+.movie-grid {
+    gap: 10px;
+}
+}

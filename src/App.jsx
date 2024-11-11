@@ -6,6 +6,7 @@ import MovieList from './components/MovieList.jsx';
 import NavBar from './components/NavBar.jsx';
 import SignUp from './pages/Signup.jsx';
 import LogIn from './pages/LogIn.jsx'
+import SearchResults from './pages/SearchResults.jsx';
 
 
 //useEffect로 처음 렌더링 시 API 호출 실행
@@ -24,6 +25,7 @@ const App = () =>{
         <Route path="/detail/:movieId" element={<Detail/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/login" element={<LogIn/>}/>
+        <Route path="/search" element={<SearchResults/>}/>
       </Routes>
     </BrowserRouter>
   )

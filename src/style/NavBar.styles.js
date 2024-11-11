@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 
 export const NavBarContainer = styled.nav`
   display: flex;
+  flex-wrap: wrap;
   box-sizing:border-box;
   align-items: center;
   justify-content: space-between;
+  //justify-content: flex-start;
+  //gap: 20px;
   padding: 10px 20px;
   background-color: darkslategray;
   color: #fff;
@@ -42,4 +45,20 @@ export const Button = styled(Link)`//Link 컴포넌트로 수정
   &:hover {
     background-color: #e0e0e0;
   }
+`;
+
+
+export const SearchInput = styled.input`
+
+  width:200px;
+  z-index: 10;
+
+  padding: 8px;
+  margin-left: 20px;
+  border: none;
+  
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+  color:#000;
 `;
