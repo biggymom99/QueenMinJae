@@ -10,7 +10,7 @@ export const NavBarContainer = styled.nav`
   //justify-content: flex-start;
   //gap: 20px;
   padding: 10px 20px;
-  background-color: darkslategray;
+  background-color: darkred;
   color: #fff;
   position: fixed;
   left:0;
@@ -26,6 +26,7 @@ export const Logo = styled(Link)`
   font-weight: bold;
   text-decoration: none;
   color: #fff;
+  border-color: black;
 `;
 
 export const ButtonContainer = styled.div`
@@ -36,11 +37,12 @@ export const ButtonContainer = styled.div`
 export const Button = styled(Link)`//Link 컴포넌트로 수정
   padding: 8px 16px;
   border: none;
+  text-decoration: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: #f0f0f0;
-  color: #333;
-  font-weight: bold;
+  background-color: #121212;
+  color: white;
+  //font-weight: bold;
 
   &:hover {
     background-color: #e0e0e0;

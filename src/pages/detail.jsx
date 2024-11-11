@@ -1,43 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import styled from "styled-components";
-
-// 전체 레이아웃 컨테이너
-const Container = styled.div`
-  display: flex;
-  gap: 20px; // 포스터와 정보 섹션 사이 간격
-`;
-
-const Poster = styled.img`
-  width: 500px;
-  max-width: 1000px;
-  border-radius: 8px;
-`;
-
-// 정보 섹션
-const InfoSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px; // 각 정보 항목 사이의 간격
-`;
-
-// 제목과 평점 컨테이너
-const TitleAndRating = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-// 장르와 줄거리 섹션
-const Genre = styled.footer`
-  font-size: 1rem;
-  color: #333;
-`;
-
-const Overview = styled.p`
-  font-size: 1rem;
-  color: #666;
-`;
+import { Container, Genre, InfoSection, Overview, TitleAndRating } from "../style/Detail"
+import { Poster } from "../style/Detail";
 
 export default function Detail() {
   const { movieId } = useParams();
@@ -75,7 +40,7 @@ export default function Detail() {
 
   return (
     <Container>
-      <Poster className="w-[50%]" src={imgUrl} />
+      <Poster src={imgUrl} />
 
       <InfoSection>
         <TitleAndRating>

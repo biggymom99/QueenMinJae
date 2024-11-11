@@ -17,6 +17,7 @@ import SearchResults from './pages/SearchResults.jsx';
 const App = () =>{
 
 
+
   return(
     <BrowserRouter>
       <NavBar/>

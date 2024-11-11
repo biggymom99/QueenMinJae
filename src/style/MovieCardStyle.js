@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const Card = styled.div`
   width: 120px;
   height: 200px;
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
+  //background-color: #f9f9f9;
+  background-color: gray;
+  border: 0.5px solid #e0e0e0;
   margin-top: 50px;
 
   color: #333;
