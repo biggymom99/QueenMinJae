@@ -37,7 +37,6 @@ export default function Search({ onSearch }) {
       placeholder="영화 검색..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
-      onKeyDown={handleKeyDown}
     />
   );
 }
